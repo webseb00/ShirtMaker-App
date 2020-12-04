@@ -9,11 +9,18 @@ import axios from 'axios';
 export default function App() {
   const [counter, setCounter] = useState(0);
   const [imageUrl, setImageUrl] = useState(null);
+  const [nextImageUrl, setNextImageUrl] = useState(null);
   const [shirtType, setShirtType] = useState('');
 
   const fetchImage = async () => {
-    const getImageUrl = await axios.get('https://picsum.photos/200');
-    setImageUrl(getImageUrl.request.responseURL);
+    const res = await axios.get('https://picsum.photos/200');
+    return res;
+  }
+
+  const handleNextComponent = () => {
+    if(counter === 1) {
+      nextImageUrl !== null ? setImageUrl(nextImageUrl) : '';
+    }
   }
 
   const displayComponents = () => {
@@ -26,9 +33,15 @@ export default function App() {
                   setShirt={setShirtType}
                 />;
       case 1: 
-        return <ShirtGraphic details={imageUrl} type={shirtType} />;
+        return <ShirtGraphic 
+                  image={imageUrl} 
+                  shirtType={shirtType} 
+                  fetchImage={fetchImage}
+                  setNext={setNextImageUrl}
+                  nextImage={nextImageUrl}
+                />;
       case 2: 
-        return <ShirtGraphicStyle />;
+        return <ShirtGraphicStyle image={imageUrl} />;
       default: 
         return 'No component...';
     }
@@ -40,6 +53,7 @@ export default function App() {
       <Stepper 
         counter={counter} 
         setCounter={setCounter} 
+        handleNextComponent={handleNextComponent}
       />
     </Container>
   );

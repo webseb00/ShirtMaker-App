@@ -14,12 +14,13 @@ function getSteps() {
   return ['Select side of the shirt', 'Select image to print', 'Select style of the graphic'];
 }
 
-export default function HorizontalLabelPositionBelowStepper({ counter:  activeStep, setCounter: setActiveStep }) {
+export default function HorizontalLabelPositionBelowStepper({ counter:  activeStep, setCounter: setActiveStep, handleNextComponent }) {
   const classes = useStyles();
   const steps = getSteps();
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    handleNextComponent();
   };
 
   const handleBack = () => {

@@ -36,17 +36,21 @@ export default function ShirtSide({ setImage, image, fetchImage, setShirt }) {
   });
 
   useEffect(() => {
-    handleInitData();
+    if(!image) { handleInitData(); }
   }, []);
 
   const handleInitData = () => {
-    fetchImage();
+    const res = fetchImage()
+    .then(res => setImage(res.request.responseURL));
     setShirt('front');
   }
 
   const handleChange = e => {
     setImage(null);
-    fetchImage();
+
+    const res = fetchImage()
+    .then(res => setImage(res.request.responseURL));
+
     let data = null;
     if(e.target.name === 'front_shirt') {
       data = {
