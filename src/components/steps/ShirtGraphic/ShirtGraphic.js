@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ShirtGraphicPreview from './ShirtGraphicPreview';
-import { Typography, Grid, Button, makeStyles, Paper } from '@material-ui/core';
+import { Typography, Grid, Button, makeStyles } from '@material-ui/core';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 
@@ -21,6 +21,10 @@ const useStyles = makeStyles({
 });
 
 export default function ShirtSide({ image, shirtType, fetchImage, setNext, nextImage }) {  
+  useEffect(() => {
+    setNext(image);
+  }, []);
+
   const classes = useStyles();
   const [counter, setCounter] = useState(0);
   const images = [image, nextImage];

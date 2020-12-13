@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ShirtSide({ setImage, image, fetchImage, setShirt }) {
+export default function ShirtSide({ fetchImage, image, setImage, setShirt }) {
   const classes = useStyles();
   const [checked, setChecked] = useState({
     front_shirt: true,
@@ -50,7 +50,7 @@ export default function ShirtSide({ setImage, image, fetchImage, setShirt }) {
 
     const res = fetchImage()
     .then(res => setImage(res.request.responseURL));
-
+ 
     let data = null;
     if(e.target.name === 'front_shirt') {
       data = {
