@@ -1,5 +1,4 @@
-import { makeStyles } from '@material-ui/core';
-import { Typography, Grid, Paper, FormControlLabel, Switch, Button, Divider } from '@material-ui/core';
+import { Typography, Grid, Paper, FormControlLabel, Switch, Button, Divider, makeStyles } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import front from '../../../images/front.png';
 import back from '../../../images/back.png';

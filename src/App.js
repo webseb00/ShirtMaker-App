@@ -5,6 +5,7 @@ import ShirtGraphic from './components/steps/ShirtGraphic/ShirtGraphic';
 import ShirtGraphicStyle from './components/steps/ShirtGraphicStyle/ShirtGraphicStyle';
 import ImageFormSummary from './components/steps/ImageFormSummary/ImageFormSummary';
 import ClientData from './components/steps/ClientData/ClientData';
+import OrderMethod from './components/steps/OrderMethod/OrderMethod';
 import { default as Stepper } from './components/common/Stepper';
 import axios from 'axios';
 
@@ -15,6 +16,7 @@ export default function App() {
   const [shirtType, setShirtType] = useState('');
   const [imageStyle, setImageStyle] = useState(null);
   const [message, setMessage] = useState(null);
+  const [customerData, setCustomerData] = useState(null);
   const [confirmStep, handleConfirmStep] = useState({
     step1: false,
     step2: false,
@@ -36,15 +38,24 @@ export default function App() {
     // validate imageFormSummary component
     if(counter === 3) {
       const { step1, step2, step3 } = confirmStep;
-      if(step1 === false || step2 === false || step3 === false) {
+      if(!step1 || !step2 || !step3) {
         setMessage('Please confirm all steps!');
         return false;
       } else {
         setMessage(null);
       }
     }
+    // validate clients data
+    if(counter === 4) {
+      if(!customerData) {
+        setMessage('Please fill the form before going to the next step.');
+        return false;
+      } else {
+        setMessage(null);
+      }
+    }
 
-    setCounter(prevCounter => prevCounter + 1);
+    setCounter((prevCounter) => prevCounter + 1);
   }
 
   const displayComponents = () => {
@@ -82,7 +93,14 @@ export default function App() {
                   message={message}
                />;
       case 4: 
-        return <ClientData />
+        return <ClientData 
+                  setData={setCustomerData} 
+                  image={imageStyle ?? imageUrl} 
+                  shirtType={shirtType} 
+                  message={message}
+                />;
+      case 5:
+        return <OrderMethod />;
       default: 
         return 'No component...';
     }
