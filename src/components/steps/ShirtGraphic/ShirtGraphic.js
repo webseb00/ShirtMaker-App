@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ShirtGraphicPreview from './ShirtGraphicPreview';
-import { Typography, Grid, Button, makeStyles } from '@material-ui/core';
+import { Grid, Button, makeStyles } from '@material-ui/core';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ShirtSide({ image, shirtType, fetchImage, setNext, nextImage }) {  
+export default function ShirtSide({ image, shirtType, fetchImage, setNext, nextImage }) {
   useEffect(() => {
     setNext(image);
   }, []);
@@ -28,7 +28,7 @@ export default function ShirtSide({ image, shirtType, fetchImage, setNext, nextI
   const classes = useStyles();
   const [counter, setCounter] = useState(0);
   const images = [image, nextImage];
-  
+
   const slideNextImage = async () => {
     if(counter === 0) {
       const data = fetchImage();
@@ -43,12 +43,9 @@ export default function ShirtSide({ image, shirtType, fetchImage, setNext, nextI
       setCounter(counter - 1);
     }
   }
-  
+
   return (
       <>
-        <Typography variant="h2">
-          ShirtGraphic Component
-        </Typography>
         <Grid container justify="center" spacing={3}>
           <Grid item>
             <ShirtGraphicPreview img={images[counter]} type={shirtType} />
@@ -58,15 +55,15 @@ export default function ShirtSide({ image, shirtType, fetchImage, setNext, nextI
               <img src={images[counter]} />
               <div className={classes.buttons}>
                 <Button
-                  disabled={counter === 0 ? true : false} 
-                  onClick={slidePrevImage} 
-                  variant="contained" 
+                  disabled={counter === 0 ? true : false}
+                  onClick={slidePrevImage}
+                  variant="contained"
                   color="primary">
                     <KeyboardArrowLeftIcon />
                 </Button>
-                <Button 
+                <Button
                   disabled={counter === 1 ? true : false}
-                  onClick={slideNextImage} 
+                  onClick={slideNextImage}
                   variant="contained"
                   color="primary">
                     <KeyboardArrowRightIcon />

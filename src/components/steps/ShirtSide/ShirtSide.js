@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, Card, CardContent, CardActions, Radio, Grid, FormControlLabel, RadioGroup, makeStyles } from '@material-ui/core';
+import { Card, CardContent, CardActions, Radio, Grid, FormControlLabel, RadioGroup, makeStyles } from '@material-ui/core';
 import ShirtFront from '../../../images/front.png';
 import ShirtBack from '../../../images/back.png';
 import Loader from 'react-loader-spinner';
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
       transform: 'translate(-50%,-40%)',
     },
     '& + img': {
-      maxWidth: '160px',
+      maxWidth: '130px',
       width: '100%'
     }
   },
@@ -50,7 +50,7 @@ export default function ShirtSide({ fetchImage, image, setImage, setShirt }) {
 
     const res = fetchImage()
     .then(res => setImage(res.request.responseURL));
- 
+
     let data = null;
     if(e.target.name === 'front_shirt') {
       data = {
@@ -77,23 +77,20 @@ export default function ShirtSide({ fetchImage, image, setImage, setShirt }) {
 
   return (
       <>
-        <Typography variant="h2">
-          ShirtSide Component
-        </Typography>
         <Grid container justify="center" spacing={3}>
           <Grid item xs={10} sm={6} md={4}>
             <Card>
               <CardContent className={classes.centerImg}>
-                <img 
-                  src={ShirtFront} 
-                  className={classes.image} 
-                  alt="front shirt" 
+                <img
+                  src={ShirtFront}
+                  className={classes.image}
+                  alt="front shirt"
                 />
                 {checked.front_shirt ? displayImage() : ''}
               </CardContent>
               <CardActions className={classes.centerLabel}>
                 <FormControlLabel
-                  onChange={handleChange} 
+                  onChange={handleChange}
                   value="front"
                   name="front_shirt"
                   control={<Radio />}
@@ -107,16 +104,16 @@ export default function ShirtSide({ fetchImage, image, setImage, setShirt }) {
           <Grid item xs={10} sm={6} md={4}>
             <Card>
               <CardContent className={classes.centerImg}>
-                <img 
-                  src={ShirtBack} 
-                  className={classes.image} 
+                <img
+                  src={ShirtBack}
+                  className={classes.image}
                   alt="back shirt"
                 />
                 {checked.back_shirt ? displayImage() : ''}
               </CardContent>
               <CardActions className={classes.centerLabel}>
                 <FormControlLabel
-                  onChange={handleChange} 
+                  onChange={handleChange}
                   value="back"
                   name="back_shirt"
                   control={<Radio />}

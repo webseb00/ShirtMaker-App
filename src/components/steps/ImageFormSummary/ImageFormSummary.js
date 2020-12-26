@@ -1,4 +1,4 @@
-import { Typography, Grid, Paper, FormControlLabel, Switch, Button, Divider, makeStyles } from '@material-ui/core';
+import { Grid, Paper, FormControlLabel, Switch, Button, Divider, makeStyles } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import front from '../../../images/front.png';
 import back from '../../../images/back.png';
@@ -47,9 +47,6 @@ export default function ImageFormSummary({ image, imageStyle, shirtType, setCoun
 
   return (
     <div className={classes.root}>
-      <Typography variant="h2">
-        Image Form Summary
-      </Typography>
       <Grid container justify="center" spacing={3}>
         {message && showAlert()}
         <Grid item xs={12} sm={8}>
@@ -61,9 +58,9 @@ export default function ImageFormSummary({ image, imageStyle, shirtType, setCoun
                 control={<Switch name="step1" checked={step1} onChange={toggleSwitch} />}
                 label="Confirm step"
               />
-              <Button 
-                variant="outlined" 
-                color="primary" 
+              <Button
+                variant="outlined"
+                color="primary"
                 onClick={() => handleClick(0)}>
                 Edit
               </Button>
@@ -77,16 +74,16 @@ export default function ImageFormSummary({ image, imageStyle, shirtType, setCoun
                 control={<Switch name="step2" checked={step2} onChange={toggleSwitch} />}
                 label="Confirm step"
               />
-              <Button 
-                variant="outlined" 
-                color="primary" 
+              <Button
+                variant="outlined"
+                color="primary"
                 onClick={() => handleClick(1)}>
                 Edit
               </Button>
             </div>
           </Paper>
           {
-            imageStyle && 
+            imageStyle &&
             <Paper className={`order-item ${step3 ? 'active' : ''}`}>
               <img src={imageStyle} alt="shirt" />
               <Divider orientation="vertical" flexItem />
@@ -95,9 +92,9 @@ export default function ImageFormSummary({ image, imageStyle, shirtType, setCoun
                   control={<Switch name="step3" checked={step3} onChange={toggleSwitch} />}
                   label="Confirm step"
                 />
-                <Button 
-                  variant="outlined" 
-                  color="primary" 
+                <Button
+                  variant="outlined"
+                  color="primary"
                   onClick={() => handleClick(2)}>
                   Edit
                 </Button>
